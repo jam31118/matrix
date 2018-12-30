@@ -4,7 +4,7 @@ LIB_DIR=../lib/
 all: libmatrix.a
 
 install: libmatrix.a
-	mv $^ $(LIB_DIR)
+	mkdir -p $(LIB_DIR) && mv $^ $(LIB_DIR)
 
 libmatrix.a: matrix.o
 	$(AR) rcs $@ $^
