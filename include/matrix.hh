@@ -58,6 +58,9 @@ int gaussian_elimination_tridiagonal(T *alpha, T *beta, T *gamma, T *v, T *b, lo
     *(p_v-1) = *(p_v-1) - *p_v * (*p_gamma) / (*p_delta);
     // [NOTE] Using `p_v-1` is valid since it has already been set.
   }
+  
+  //// Free allocated memory
+  free(delta);
 
   return 0;
 }
