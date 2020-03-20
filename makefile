@@ -3,7 +3,7 @@ TEST_DIR = ./test/
 TEST_SUBDIRS := $(wildcard $(TEST_DIR)/*/.)
 
 .PHONY : all test $(TEST_SUBDIRS)
-all: objects
+all: objects install
 
 test: $(TEST_SUBDIRS)
 
