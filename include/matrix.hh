@@ -5,15 +5,16 @@
 #include <cstdlib>
 #include <iostream>
 
-template <class T>
-int tridiag_mul_forward(T *ld, T *d, T *ud, T *v, T *b, long N) {
+template <typename T, typename type_vec>
+int tridiag_mul_forward(T *ld, T *d, T *ud, type_vec *v, type_vec *b, long N) {
   
   long offset = 1, num_of_elements_in_loop = N - 2;
 
   T *p_d = d + offset, 
     *p_ld = ld + offset, 
-    *p_ud = ud + offset, 
-    *p_v = v + offset, 
+    *p_ud = ud + offset;
+  type_vec 
+		*p_v = v + offset, 
     *p_b = b + offset;
 
   T *p_d_max = p_d + num_of_elements_in_loop;
@@ -28,15 +29,16 @@ int tridiag_mul_forward(T *ld, T *d, T *ud, T *v, T *b, long N) {
   return 0;
 }
 
-template <class T>
-int tridiag_mul_backward(T *ld, T *d, T *ud, T *v, T *b, long N) {
+template <typename T, typename type_vec>
+int tridiag_mul_backward(T *ld, T *d, T *ud, type_vec *v, type_vec *b, long N) {
 
   // Allocate arrays for intermediate results
   T *delta = (T *) malloc(sizeof(T) * N);
   
   long i;
-  T *p_d, *p_ld, *p_ud, *p_b, *p_delta, *p_v;
+  T *p_d, *p_ld, *p_ud, *p_delta; 
   T ld_temp;
+	type_vec *p_v, *p_b;
 
   // copy the first element as a start
   *delta = *d;  
